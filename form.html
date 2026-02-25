@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Regreso a Clases - Kaizen</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      text-align: center;
+      background: #f0f8ff;
+      margin: 0;
+      padding: 0;
+    }
+
+    .banner {
+      width: 100%;
+      max-height: 400px;
+      object-fit: cover;
+    }
+
+    h1 {
+      margin-top: 20px;
+      color: #2c3e50;
+    }
+
+    #countdown {
+      font-size: 2em;
+      margin-top: 30px;
+      color: #e74c3c;
+      font-weight: bold;
+    }
+
+    .form-section {
+      margin-top: 40px;
+      background: #ffffff;
+      padding: 20px;
+      border-radius: 10px;
+      width: 60%;
+      margin-left: auto;
+      margin-right: auto;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    input, textarea {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      background: #2c3e50;
+      color: white;
+      padding: 12px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #34495e;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+       </header>
+
+    <h1>🎓 ¡Cuenta regresiva para el regreso a clases!</h1>
+    <div id="countdown"></div>
+
+    <section class="form-section">
+      <h2>📋 Cuéntanos tu opinión</h2>
+      <form action="https://formspree.io/f/xdalbndw" method="POST">
+
+        <label for="mensaje">¿Qué opinas?:</label>
+        <textarea id="mensaje" name="mensaje" rows="4" required></textarea>
+
+        <button type="submit">Enviar</button>
+      </form>
+    </section>
+  </div>
+
+  <script>
+    function actualizarConteo() {
+      const fechaObjetivo = new Date("March 2, 2026 00:00:00").getTime();
+      const ahora = new Date().getTime();
+      const diferencia = fechaObjetivo - ahora;
+
+      const dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
+      const horas = Math.floor((diferencia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutos = Math.floor((diferencia % (1000 * 60 * 60)) / (1000 * 60));
+      const segundos = Math.floor((diferencia % (1000 * 60)) / 1000);
+
+      document.getElementById("countdown").innerHTML =
+        `${dias} días ${horas}h ${minutos}m ${segundos}s`;
+
+      if (diferencia < 0) {
+        document.getElementById("countdown").innerHTML = "¡Ya es 2 de marzo! 🎉";
+      }
+    }
+
+    setInterval(actualizarConteo, 1000);
+  </script>
+</body>
+</html>
